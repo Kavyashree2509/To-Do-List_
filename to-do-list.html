@@ -1,0 +1,126 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>To-Do List</title> 
+<style> 
+body { 
+font-family: Arial, sans-serif; 
+margin: 0; 
+padding: 0; 
+display: flex; 
+justify-content: center; 
+align-items: center; 
+height: 100vh; 
+background-color: #f4f4f4; 
+} 
+.container { 
+width: 90%; 
+max-width: 600px; 
+background: #fff; 
+padding: 20px; 
+border-radius: 8px; 
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+} 
+h1 { 
+text-align: center; 
+} 
+.todo-list { 
+list-style: none; 
+padding: 0; 
+margin: 0; 
+} 
+.todo-list li { 
+display: flex; 
+align-items: center; 
+justify-content: space-between; 
+padding: 10px; 
+border-bottom: 1px solid #ddd; 
+} 
+.todo-list input[type="checkbox"] { 
+margin-right: 10px; 
+} 
+.todo-list button { 
+background-color: #ff4c4c; 
+color: white; 
+border: none; 
+padding: 5px 10px; 
+border-radius: 4px; 
+cursor: pointer; 
+} 
+.todo-list button:hover { 
+background-color: #e63946; 
+} 
+#new-task { 
+display: flex; 
+margin-bottom: 20px; 
+30 
+} 
+#new-task input { 
+flex: 1; 
+padding: 10px; 
+border: 1px solid #ddd; 
+border-radius: 4px; 
+} 
+#new-task button { 
+background-color: #007bff; 
+color: white; 
+border: none; 
+padding: 10px 20px; 
+border-radius: 4px; 
+cursor: pointer; 
+margin-left: 10px; 
+} 
+#new-task button:hover { 
+background-color: #0056b3; 
+} 
+</style> 
+</head> 
+<body> 
+<div class="container"> 
+<h1>To-Do List</h1> 
+<div id="new-task"> 
+31 
+<input type="text" id="task-input" placeholder="Add a new task"> 
+<button onclick="addTask()">Add</button> 
+</div> 
+<ul id="task-list" class="todo-list"> 
+<!-- Tasks will be added here --> 
+</ul> 
+</div> 
+<script> 
+function addTask() { 
+const input = document.getElementById('task-input'); 
+const taskText = input.value.trim(); 
+if (taskText === '') { 
+alert('Please enter a task.'); 
+return; 
+} 
+const taskList = document.getElementById('task-list'); 
+// Create new task element 
+const taskItem = document.createElement('li'); 
+taskItem.innerHTML = ` 
+<input type="checkbox"> 
+<span>${taskText}</span> 
+32 
+<button onclick="removeTask(this)">Remove</button> 
+`; 
+// Add task to the list 
+taskList.appendChild(taskItem); 
+// Clear input field 
+input.value = ''; 
+} 
+function removeTask(button) { 
+const taskList = document.getElementById('task-list'); 
+taskList.removeChild(button.parentElement); 
+} 
+// Optional: Add functionality to mark tasks as completed 
+document.getElementById('task-list').addEventListener('change', function(event) { 
+if (event.target.type === 'checkbox') { 
+const taskSpan = event.target.nextElementSibling; 
+taskSpan.style.textDecoration = event.target.checked ? 'line-through' : 'none'; } 
+}); 
+</script> 
+</body> 
+</html>
